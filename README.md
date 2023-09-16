@@ -1,5 +1,5 @@
 # CriptoPass
-applicazione web che consente agli utenti di crittografare e salvare le proprie password in modo sicuro
+Applicazione web che consente agli utenti di crittografare e salvare le proprie password in modo sicuro
 
 # Descrizione
 
