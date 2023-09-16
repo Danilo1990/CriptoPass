@@ -18,4 +18,5 @@ Tecnologie Utilizzate: Il progetto è stato sviluppato utilizzando una combinazi
 # Come Iniziare:
 
 Per iniziare, è sufficiente clonare il repository e configurare un server web con PHP. Segui le istruzioni nel file di documentazione per l'installazione e la configurazione del sistema.
-<b>Vai sul file configura-db.php e inserisci i dati del tuo database</b>
+
+Vai sul file configura-db.php e inserisci i dati del tuo database
