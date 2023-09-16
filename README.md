@@ -1,7 +1,6 @@
 # CriptoPass
 applicazione web che consente agli utenti di crittografare e salvare le proprie password in modo sicuro
 
-
 # Descrizione
 
 PasswordManager è un'applicazione web sviluppata utilizzando HTML, CSS, PHP e jQuery che ti offre un modo sicuro per crittografare e decrittografare le tue password sensibili. Questa applicazione consente agli utenti di salvare le proprie password in modo crittografato all'interno del proprio profilo utente.
@@ -19,3 +18,4 @@ Tecnologie Utilizzate: Il progetto è stato sviluppato utilizzando una combinazi
 # Come Iniziare:
 
 Per iniziare, è sufficiente clonare il repository e configurare un server web con PHP. Segui le istruzioni nel file di documentazione per l'installazione e la configurazione del sistema.
+<b>Vai sul file configura-db.php e inserisci i dati del tuo database</b>
