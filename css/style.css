@@ -1,0 +1,137 @@
+/**
+* Template Name: Arsha
+* Updated: Aug 30 2023 with Bootstrap v5.3.1
+* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: 'Raleway', sans-serif !important;
+  color: #444444 !important;
+  min-height: 100% !important;
+}
+
+.container{
+  min-height: 100% !important;
+}
+
+a {
+  color: #47b2e4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #73c5eb;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar .getstarted,
+.navbar .getstarted:focus {
+  padding: 8px 20px;
+  margin-left: 30px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 14px;
+  border: 2px solid #000;
+  font-weight: 600;
+}
+.logo {
+  width: 25%;
+}
+
+.navbar .getstarted:hover,
+.navbar .getstarted:focus:hover {
+  color: #fff !important;
+  background: #000;
+}
+#footer .copyright {
+  float: left;
+}
+
+#footer .credits {
+  float: right;
+  font-size: 13px;
+}
+
+#footer .credits a {
+  transition: 0.3s;
+}
+.mt-8 {
+  margin-top: 8rem;
+}
+.mb-8 {
+  margin-bottom: 8rem;
+}
+.mx-8 {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+
+@media (max-width: 768px) {
+  #footer .footer-bottom {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  #footer .copyright,
+  #footer .credits {
+    text-align: center;
+    float: none;
+  }
+
+  #footer .credits {
+    padding-top: 4px;
+  }
+  .logo {
+    width: 50%;
+  }
+  label.form-check-label {
+    font-size: 1.3rem !important;  
+  } 
+}
+
+form.hide {
+  display: none;
+}
+.hide {
+  display: none !important;
+}
+input.error {
+  border: 5px solid red;
+}
+.form-check-input {
+  height: 2rem !important;
+  width: 4rem !important;
+}
+
+.form-check.form-switch {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+label.form-check-label {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+#lengthPass::-webkit-slider-thumb {
+  width: 30px; /* Imposta la larghezza desiderata */
+  height: 30px; /* Imposta l'altezza desiderata */
+  margin-top: -8px;
+}
+#lengthPass::-webkit-slider-runnable-track {
+  height: 15px; /* Imposta l'altezza desiderata per la linea */
+}
