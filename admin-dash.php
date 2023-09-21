@@ -1,9 +1,9 @@
 <?php
 session_start();
 if($_SESSION['role'] === 'administrator') {
-    include 'scripts/control-login.php';
-    include 'scripts/functions.php';
-    include 'scripts/configura-db.php';
+    include 'inc/control-login.php';
+    include 'inc/functions.php';
+    include 'inc/configura-db.php';
     head('Dashboard'); 
     ?>
       <div class="main">

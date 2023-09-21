@@ -1,6 +1,6 @@
 <?php
-include 'scripts/functions.php';
-include 'scripts/configura-db.php';
+include 'inc/functions.php';
+include 'inc/configura-db.php';
 head('Registrati'); 
 
 $token = $_GET['token'];

@@ -2,9 +2,9 @@
 // Processo di cambio di password
 // Form nella pagia area-riservata.php
 session_start();
-include 'scripts/control-login.php';
-include 'scripts/functions.php';
-include 'scripts/configura-db.php';
+include 'inc/control-login.php';
+include 'inc/functions.php';
+include 'inc/configura-db.php';
 head('Area riservata'); ?>
 
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
@@ -49,7 +49,7 @@ head('Area riservata'); ?>
                                 <div class="tab-content border border-top-0 p-3">
                                     <!-- Cambio pass -->
                                     <div id="menu1-content" class="tab-pane active">
-                                        <form method="post" action="scripts/cambia-password.php">
+                                        <form method="post" action="inc/cambia-password.php">
                                             <div class=" text-uppercase fw-semibold mb-3 d-block" id="request"></div>
                                             <div class="form-group">
                                                 <label for="old_password">Vecchia Password:</label>
@@ -68,7 +68,7 @@ head('Area riservata'); ?>
                                     </div>
                                     <!-- Cambio email -->
                                     <div id="menu2-content" class="tab-pane">
-                                        <form method="post" action="scripts/cambia-email.php" class="row g-3">
+                                        <form method="post" action="inc/cambia-email.php" class="row g-3">
                                             <div class="col-12 col-md-8 col-xl-8">
                                                 <input type="email" class="form-control form-control-lg" id="new_email" name="new_email" value="<?= $_SESSION["email"] ?>">
                                             </div>
@@ -81,7 +81,7 @@ head('Area riservata'); ?>
                                     <div id="menu3-content" class="tab-pane">
                                         <div class="d-md-block mt-3">
                                             <!-- Form per eliminare account -->
-                                            <form class="d-inline" method="post" action="scripts/elimina-utente.php" id="confermaFormAccount">
+                                            <form class="d-inline" method="post" action="inc/elimina-utente.php" id="confermaFormAccount">
                                                 <input type="hidden" name="idUtente" value="<?php echo $idUtente; ?>">
                                                 <button class="btn btn-dark btn-lg " type="button" name="conferma" id="confermaButtonAccount">Elimina account</button>
                                             </form> 

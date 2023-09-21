@@ -37,7 +37,9 @@ h5,
 h6 {
   font-family: 'Raleway', sans-serif;
 }
-
+.gradient-banner {
+  padding: 120px 0 200px;
+}
 .navbar .getstarted,
 .navbar .getstarted:focus {
   padding: 8px 20px;
@@ -49,9 +51,16 @@ h6 {
   font-weight: 600;
 }
 .logo {
-  width: 25%;
+  width: 20%;
 }
-
+a.nav-link {
+    font-size: 1.2rem;
+}
+.bg-image {
+    background-image: url(/img/login.jpg);
+    background-size: cover;
+    background-position: center center;
+}
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
   color: #fff !important;
@@ -81,6 +90,9 @@ h6 {
 }
 
 @media (max-width: 768px) {
+    body .w-sm-100 {
+         width: 100% !important;
+    }
   #footer .footer-bottom {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -134,4 +146,12 @@ label.form-check-label {
 }
 #lengthPass::-webkit-slider-runnable-track {
   height: 15px; /* Imposta l'altezza desiderata per la linea */
+}
+
+i#showPass1,i#showPass2, i#showPass3,i#showPass4  {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-56%);
+  font-size: 1.5rem;
+  z-index: 9999;
 }

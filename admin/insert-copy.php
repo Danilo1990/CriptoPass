@@ -1,7 +1,7 @@
 <?php 
 session_start();
-include '../scripts/functions.php';
-include '../scripts/configura-db.php';
+include '../inc/functions.php';
+include '../inc/configura-db.php';
 
 $titolo = $_POST['titolo'];
 $contenuto = $_POST['contenuto'];

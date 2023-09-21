@@ -1,16 +1,16 @@
 <?php
 session_start();
-include "scripts/functions.php";
-include "scripts/configura-db.php";
+include "inc/functions.php";
+include "inc/configura-db.php";
 head($titolo = "Home");
 ?>
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 <div class="container py-5">
-    <div class="bg-dark card p-4 rounded-5 text-white">
+    <div class="card shadow">
+    <div class="card-header bg-success text-white p-3"><h3 class="m-0">Genera la tua password</h3></div>
     <div class="card-body">
-        
-        <div class="bg-light p-3 rounded-2 text-dark fs-5 text-center">
-            <span id="pass">Genera la password</span> 
+        <div class="bg-light p-3  text-dark fs-4 text-center">
+            <span id="pass">La tua password</span> 
             <i id="copy" class="hide bi bi-clipboard-check fs-3 ms-3"></i>
         </div>
         <label for="customRange1" class="form-label mt-3">Lunghezza: <span id="lunghezza"><b>13</b></span></label>
@@ -19,16 +19,16 @@ head($titolo = "Home");
             <input type="range" class="form-range px-2" min="5" max="20"  id="lengthPass"> 
             <span>20</span>
         </div>
-        <div class="settings py-3">
-            <div class="form-check form-switch ps-5 py-2 shadow">
+        <div class="settings shadow p-3">
+            <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="uppercasePass">
                 <label class="form-check-label" for="uppercasePass">Includi lettere maiuscole</label>
             </div>   
-            <div class="form-check form-switch ps-5 py-2 shadow">
+            <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="numberPass">
                 <label class="form-check-label" for="numberPass">Includi numeri</label>
             </div>  
-            <div class="form-check form-switch ps-5 py-2 shadow">
+            <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="symbolsPass">
                 <label class="form-check-label" for="symbolsPass">Includi simboli</label>
             </div> 

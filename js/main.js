@@ -1,22 +1,36 @@
 $(document).ready(function() {
+    changeType();
     checkSavePassword();
     resetButton();
+    serchOnTablePass()
     tab();
     panelAdminDash();
     lengtCreatePass();
     generatePass();
     copyPass();
 });
-// Check salvare la pass nel profilo utente
+
+function changeType() {
+    $('.icon-pass').click(function(){
+        let inputPassword = $(this).prev('input.showPass');
+        let id = inputPassword.data("id");
+        //console.log(id);
+        if (inputPassword.attr('type') === 'password') {
+            inputPassword.attr('type', 'text');
+            $('#showPass'+id).removeClass('bi bi-eye')
+            $('#showPass'+id).addClass('bi bi-eye-slash')
+        } else {
+            inputPassword.attr('type', 'password');
+            $('#showPass'+id).addClass('bi bi-eye')
+            $('#showPass'+id).removeClass('bi bi-eye-slash')
+        }
+    });
+}
+// Check sallete la pass nel profilo utente
 function checkSavePassword() {
     $('#SwitchCheckUser').change(function() {
-        // Controlla se la casella di controllo è spuntata
-        if ($(this).is(':checked')) {
-            $('#username').removeClass('hide');
-        } else {
-            // Nascondi il campo di input di testo
-            $('#username').addClass('hide');
-        }
+        $('#username').toggleClass('hide');
+        $('#sito').toggleClass('hide');
     });   
 };
 // Reset button
@@ -25,6 +39,25 @@ function resetButton() {
         location.reload();
     });
 };
+// Cerca in tabella Pass
+function serchOnTablePass() {
+    $('#btnCerca').click(function() {
+        let testoDaCercare = $('#cerca').val().toLowerCase(); // Ottieni il testo di ricerca in minuscolo
+        if(testoDaCercare == '') { return false; }
+        $('table tbody tr').each(function() {
+            let riga = $(this);
+            let sito = riga.find('th').text().toLowerCase(); // Testo nel campo "Sito"
+    
+            // Verifica se il testo da cercare è presente in uno dei campi della riga
+            if (sito.indexOf(testoDaCercare) !== -1 ) {
+                riga.show(); // Mostra la riga se la corrispondenza è trovata
+                $('#reset').removeClass('hide');
+            } else {
+                riga.hide(); // Nascondi la riga se la corrispondenza non è trovata
+            }
+        });
+    });
+}
 // Tab
 function tab() {
     $("a[data-toggle='tab']").click(function() {

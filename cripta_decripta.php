@@ -1,9 +1,9 @@
 <?php
 // Pagina per inserimento, modifica e cancellazione capitoli
 session_start();
-include 'scripts/control-login.php';
-include 'scripts/functions.php';
-include 'scripts/configura-db.php';
+include 'inc/control-login.php';
+include 'inc/functions.php';
+include 'inc/configura-db.php';
 head($titolo = 'Cripta e decripta'); 
 ?>
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
@@ -18,10 +18,17 @@ head($titolo = 'Cripta e decripta');
                                 <input class="form-check-input " type="checkbox" role="switch" id="SwitchCheckUser">
                                 <label class="form-check-label" for="SwitchCheckUser">Salvare sul tuo profilo?</label>
                             </div>
-                            <input type="text" name="username" id="username" placeholder="Admin" class="hide form-control form-control-lg mb-2" required>
-                            <input type="text" name="password" placeholder="Password" class="form-control form-control-lg mb-2" required>
+                            <input type="text" name="sito" id="sito" placeholder="Sito" class="hide form-control form-control-lg mb-2">
+                            <input type="text" name="username" id="username" placeholder="Admin" class="hide form-control form-control-lg mb-2">
+                            <div class="d-flex position-relative">
+                                <input type="password" data-id="1" name="password" placeholder="Password" class="showPass form-control form-control-lg mb-2">
+                                <i id="showPass1" class="icon-pass bi bi-eye position-absolute"></i>
+                            </div>
                             <span class="hide text-danger fw-bold mb-3" id="error"></span>
-                            <input type="password" name="key" placeholder="Key" class="form-control form-control-lg mb-2" required>
+                            <div class="d-flex position-relative">
+                                <input type="password" data-id="2" name="key" placeholder="Key" class="showPass form-control form-control-lg mb-2">
+                                <i id="showPass2" class="icon-pass bi bi-eye position-absolute"></i>
+                            </div>
                             <button type="button" class="btn btn-warning btn-lg d-block w-100" id="cripta"><i class="bi bi-lock"></i> Cripta</button>
                         </form>
                     </div>
@@ -41,8 +48,14 @@ head($titolo = 'Cripta e decripta');
                     <div class="card-header bg-danger"><h3 class="text-white m-0 p-0">Decripta</h3></div>
                     <div class="card-body">
                         <form method="post" id="decripta-form">
-                            <input type="text" name="encryptedPassword" placeholder="Password" class="form-control form-control-lg mb-2" required>
-                            <input type="password" name="keyEncryp" placeholder="Key" class="form-control form-control-lg mb-2" required>
+                            <div class="d-flex position-relative">
+                                <input type="password" data-id="3" name="encryptedPassword" placeholder="Password" class="showPass form-control form-control-lg mb-2">
+                                <i id="showPass3" class="icon-pass bi bi-eye position-absolute"></i>
+                            </div>
+                            <div class="d-flex position-relative">
+                                <input type="password" data-id="4" name="keyEncryp" placeholder="Key" class="showPass form-control form-control-lg mb-2">
+                                <i id="showPass4" class="icon-pass bi bi-eye position-absolute"></i>
+                            </div>
                             <button type="button" class="btn btn-primary btn-lg d-block w-100" id="decripta"><i class="bi bi-unlock"></i> Decripta</button>
                         </form>
                     </div>

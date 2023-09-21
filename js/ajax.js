@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    changeTablePass();
+    login();
+    registerUser();
     criptaPass();
     decriptPass();
     decriptPassTable();
@@ -10,29 +13,134 @@ $(document).ready(function() {
     selectOptionPageAdmin();
     insertCopy();
 });
+function changeTablePass() {
+    $('.changeTab').click(function() {
+        swal("Attento!", "Se vuoi modificare la password devi inserla gia criptata", "info");
+        
+        let id = $(this).attr("id");
+
+        $('#'+id).prop('disabled', true);
+
+        $('#btnChange-'+id).removeClass('hide');
+        $('.change').removeClass('hide');
+        let site = $('#site-'+id);
+        let user = $('#user-'+id);
+        let pass = $('#pass-'+id);
+
+        let inputSite = $('<input type="text" class="form-control">').val(site.text());
+        let inputUser = $('<input type="text" class="form-control">').val(user.text());
+        let inputPass = $('<input type="text" class="form-control">').val(pass.text());
+
+        site.html(inputSite);
+        user.html(inputUser);
+        pass.html(inputPass);
+
+        $('#btnChange-'+id).click(function() {
+            let newSite = inputSite.val();
+            let newUser = inputUser.val();
+            let newPass = inputPass.val();
+            $.ajax({
+                type: 'POST',
+                url: '../inc/modifica-tabella.php',
+                data: { id: id, newSite: newSite, newUser: newUser, newPass: newPass},
+                success: function(data) {
+                    if(data == 'change') {
+                        swal("Ottimo", "Campi modificati con successo", "success");
+                    }
+                    site.text(newSite);
+                    user.text(newUser);
+                    pass.text(newPass);
+                    $('#'+id).prop('disabled', false);
+                    $('#btnChange-'+id).addClass('hide');
+                    $('.change').addClass('hide');
+                },
+                error: function() {
+                    alert('Errore nella richiesta AJAX' + data);
+                    console.log(data);
+                }
+            });
+        })
+        
+
+    });
+}
+function login() {
+    $('#login').click(function() {
+        let email = $('input[name="email"]').val();
+        let password = $('input[name="password"]').val();
+        $.ajax({
+            type: 'POST',
+            url: '../inc/function-login.php',
+            data: { email: email, password: password},
+            success: function(data) {
+                if(data == 'errorPass') {
+                    swal("Pasword errata", "La password che hai inserito non è corretta", "error");
+                    console.log(data);
+                } else if(data == 'errorUser') {
+                    swal("Username non trovato", "Controllo i dati inseriti", "error");
+                    console.log(data);
+                } else {
+                    window.location.replace("area-riservata");
+                }
+            },
+            error: function() {
+                alert('Errore nella richiesta AJAX' + data);
+                console.log(data);
+            }
+        });
+    });
+};
+// Registrati
+function registerUser() {
+    $('#register').click(function() {
+        console.log('ciao');
+        let email = $('input[name="email"]').val();
+        let username = $('input[name="username"]').val();
+        let password = $('input[name="password"]').val();
+    
+        $.ajax({
+            type: 'POST',
+            url: '../inc/function-register.php',
+            data: { email: email, username: username, password: password},
+            success: function(data) {
+                if(data == 'passLeght') {
+                    swal("La password non va bene", "La password deve contenere min 8 caratteri e una lettera maiuscola", "error");
+                    console.log(data);
+                } else if(data == 'userOnDB') {
+                    swal("Username già presente", "", "error");
+                    console.log(data);
+                } else if(data == 'ok'){
+                    window.location.href = "login?messaggio=Utente+registrato+con+successo%21";
+                } else {
+                    console.log(data);
+                }
+                
+            },
+            error: function() {
+                alert('Errore nella richiesta AJAX' + data);
+            }
+        });
+    });
+}
 // Cripta la pass
 function criptaPass() {
     $('#cripta').click(function() {
+        let sito = $('input[name="sito"]').val();
         let username = $('input[name="username"]').val();
         let password = $('input[name="password"]').val();
         let key = $('input[name="key"]').val();
+
         if (key.length >= 8) {
             $.ajax({
                 type: 'POST',
-                url: '../scripts/cripta.php',
-                data: { username: username, password: password, key: key},
+                url: '../inc/cripta.php',
+                data: { sito: sito, username: username, password: password, key: key},
                 success: function(data) {
-                    // Fai apparire il div #criptoPass
+                    swal("Ottimo!", "Hai ottenuto la tua password", "success");
                     $('#criptoPass').toggleClass('hide');
-                    // Pulisci gli input
-                    $('input[name="username"]').val('');
-                    $('input[name="password"]').val('');
-                    $('input[name="key"]').val('');
-                    // Riempi il div #messaggio con il risultato
+                    $('input').val('');
                     $('#messaggio').html(data);
-                    // Aziona il bottone che chiude la card
                     $("button[aria-label='Close']").click(function() {
-                        
                         location.reload();
                     });
                 },
@@ -54,12 +162,12 @@ function decriptPass() {
         let key = $('input[name="keyEncryp"]').val();
         $.ajax({
             type: 'POST',
-            url: '../scripts/decripta.php', // Percorso relativo corretto
+            url: '../inc/decripta.php', // Percorso relativo corretto
             data: { password: password, key: key},
             success: function(data) {
+                swal("Ottimo!", "Hai ottenuto la tua password", "success");
                 $('#criptoPass').toggleClass('hide');
                 $('#messaggio').html(data);
-
                 $("button[aria-label='Close']").click(function() {
                     $('#criptoPass').addClass('hide');
                     $('input[name="encryptedPassword"]').val('');
@@ -77,45 +185,65 @@ function decriptPass() {
 function decriptPassTable() {
     $(".decript").click(function() {
         let decriptId = $(this).attr("id");
-        let password = $("#id-" + decriptId).text();
-        let key = window.prompt("Inserisci la chiave:")
-        if(key != null) {
+        let password = $("#pass-" + decriptId).text();
+        swal("Scrivi la tua key", {
+        content: "input",
+        })
+        .then((key) => {
+            //console.log(password);
             $.ajax({
                 type: 'POST',
-                url: '../scripts/decripta.php', // Percorso relativo corretto
+                url: '../inc/decripta.php', // Percorso relativo corretto
                 data: { password: password, key: key},
                 success: function(data) {
-                    $("#id-" + decriptId).html(data);
-                    $("#" + decriptId).addClass('hide');
+                    $("#pass-" + decriptId).html(data);
+                    $('#'+ decriptId+'.decript').addClass('hide');
+                    //console.log($("#" + decriptId));
                     $("#reset-" + decriptId).removeClass('hide').addClass('show');
+                    $("#reset-" + decriptId).click(function() { 
+                        $("#pass-" + decriptId).text(password);
+                        $("#reset-" + decriptId).addClass('hide').removeClass('show');
+                        $('#'+ decriptId+'.decript').removeClass('hide').addClass('show');
+                    });
                 },
                 error: function() {
                     alert('Errore nella richiesta AJAX');
                 }
             });
-
-        }
+        });
     });
 }
 // Elimina la pass nella tabella (pag. Le Password)
 function deletePassTable() {
     $(".deletePass").click(function() {
         let idPass = $(this).attr("id");
-        let check =  confirm("Sicuro di voler eliminare la password?");
-        if(check == true) {
-            $.ajax({
-                type: 'POST',
-                url: '../scripts/elimina_pass.php', // Percorso relativo corretto
-                data: { idPass: idPass},
-                success: function(data) {
-                    alert(data);
-                    location.reload();
-                },
-                error: function() {
-                    alert('Errore nella richiesta AJAX');
-                }
-            });
-        }
+        swal({
+            title: "Sei sicuro?",
+            text: "Una volta eliminato, non sarai in grado di recuperala",
+            icon: "warning",
+            buttons: ["Annulla", "Elimina"],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'POST',
+                    url: '../inc/elimina_pass.php', // Percorso relativo corretto
+                    data: { idPass: idPass},
+                    success: function(data) {
+                        swal("Poof! La tua password è stata eliminata", {
+                            icon: "success",
+                        })
+                        .then(() => {
+                            location.reload(); // Aggiorna la pagina
+                        });
+                    },
+                    error: function() {
+                        alert('Errore nella richiesta AJAX');
+                    }
+                });
+            }
+        });
     });
 }
 function changePassUser() {
@@ -128,7 +256,7 @@ function changePassUser() {
         if(check == true) {
             $.ajax({
                 type: 'POST',
-                url: '../scripts/cambia-password.php', // Percorso relativo corretto
+                url: '../inc/cambia-password.php', // Percorso relativo corretto
                 data: { 
                     old_password: old_password,
                     new_password: new_password,
@@ -250,3 +378,4 @@ function insertCopy() {
         });
     }); 
 }
+

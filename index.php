@@ -1,21 +1,26 @@
 <?php
 session_start();
-include 'scripts/functions.php';
-include 'scripts/configura-db.php';
+include 'inc/functions.php';
+include 'inc/configura-db.php';
 $requested_url = $_SERVER['SCRIPT_NAME'];
 $requested_url = str_replace('/', '', $requested_url);
 head($titolo = 'Home'); 
 
 ?>
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-7 col-md-6">
-        <?php insertCopy($conn, $requested_url ) ?>
-        <a href="/cripta_decripta" class="btn btn-primary btn-lg">Inizia subito</a>
+
+
+<div class="gradient-banner">
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-start">
+        <h1 class="text-dark  mb-4">Gestisci e proteggi le tue</br> password in modo sicuro</h1>
+        <p class="text-dark mb-5">Benvenuto su CriptoPass, la tua soluzione completa per la gestione delle password e la 
+          sicurezza online. Con CriptoPass, puoi criptare e decodificare le tue password con facilità, garantendo la 
+          massima protezione per i tuoi dati sensibili.</p>
+          <a href="/cripta_decripta" class="btn btn-primary btn-lg">Inizia ora <i class="ms-2 bi bi-shield-check"></i></a>
       </div>
-      <div class="col-12 col-lg-5 col-md-6">
-        <img src="./img/slide.png" class="img-fluid w-75" alt="img home">
+      <div class="col-md-6 text-center">
+        <img class="img-fluid" src="./img/slide.png" alt="screenshot">
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
   $nomePagina = basename($_SERVER['PHP_SELF']);
   $nameclass = str_replace('.php', '', $nomePagina);
   if ($nomePagina != 'login.php' && $nomePagina != 'register.php' && $nomePagina != 'admin-dash.php') : ?>
-    <footer id="footer" class="bg-primary py-3 text-white">
+    <footer id="footer" class="py-3 text-white" style="background: #0108a2;">
       <div class="container footer-bottom clearfix">
         <div class="copyright">
           &copy; Copyright <strong>Danilo Calabrese</strong>. All Rights Reserved
@@ -15,7 +15,6 @@
     <!-- Script -->
     <?php 
       footerScripts();
-
       menuMobile();
     ?>
   </body>
